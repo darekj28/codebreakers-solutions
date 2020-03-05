@@ -30,8 +30,8 @@ class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
         return self._getLongestPath(root)[1]
     
-    # helper function which gets the length of the longest path creatable by the current node or 
-    # one of its descendants. 
+    # helper function which gets the length of the longest path creatable by running through the 
+    # current node or one of its descendants. 
     def _getLongestPath(self, currNode):
         # Base Case
         if currNode is None:
