@@ -32,6 +32,10 @@ class Solution:
         numCols = len(board[0])
         
         # direction array for visiting neighbors of current cell
+        # each element in the dirs arr represent [deltaY, deltaX] for each adjacent cell in a 2d
+        # matrix. For example, [-1,0] represents the cell above the current cell, while [1,1] 
+        # would represent the change in the rowNum and colNum for the cell to the bottom right of
+        # the current cell
         dirs = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]]
         
         # matrix to keep track of number of neighbors for cell at board[r][c]
@@ -39,6 +43,7 @@ class Solution:
         for r in range(numRows):
             for c in range(numCols):
                 numNeighs = 0
+                # we get the new indices for our neighbors of the current row and col
                 for dir in dirs:
                     newR = r + dir[0]
                     newC = c + dir[1]
@@ -46,7 +51,7 @@ class Solution:
                     if newR < 0 or newC < 0 or newR == numRows or newC == numCols:
                         continue
                     numNeighs += board[newR][newC]
-                neighsMatrix[r][c] = numNeighs
+                neighsMatrix[r][c] = numNeighs 
         
         # update original matrix with the new values
         for r in range(numRows):
