@@ -7,26 +7,26 @@ class Solution:
         # initialize middle point to "fan out" from
         center_point = 0
         # keep track of our solution indices
-        solIdx = [0,0]
+        solIndices = [0,0]
         while center_point/2 < len(s):
             # if our palindrome is odd
             if center_point % 2 == 0:
-                lIdx = center_point//2
-                rIdx = lIdx
+                leftIndex = center_point//2
+                rightIndex = leftIndex
             # if our palindrome is even
             else:
-                lIdx = center_point//2
-                rIdx = lIdx + 1
+                leftIndex = center_point//2
+                rightIndex = leftIndex + 1
             
             # while our string is a palindrome, update our starting and ending indices
-            while lIdx >= 0 and rIdx < len(s) and s[lIdx] == s[rIdx]:
+            while leftIndex >= 0 and rightIndex < len(s) and s[leftIndex] == s[rightIndex]:
                 # if the palindrome is longer than our previous solution, update it
-                if rIdx-lIdx > solIdx[1]-solIdx[0]:
-                    solIdx[1] = rIdx
-                    solIdx[0] = lIdx
-                lIdx -= 1
-                rIdx += 1
+                if rightIndex-leftIndex > solIndices[1]-solIndices[0]:
+                    solIndices[1] = rightIndex
+                    solIndices[0] = leftIndex
+                leftIndex -= 1
+                rightIndex += 1
             # update starting/center point for our palindrome
             center_point += 1
         
-        return s[solIdx[0]:solIdx[1]+1]
+        return s[solIndices[0]:solIndices[1]+1]
