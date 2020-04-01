@@ -5,35 +5,35 @@ class Solution:
         if len(A) < 3:
             return 0
         
-        lIdx = 0
-        while lIdx < len(A):
+        mtd_start = 0
+        while mtd_start < len(A):
             # initialize the end of the mountain
-            rIdx = lIdx
+            mtd_end = mtd_start
             
             # find peak of mountain
-            while rIdx + 1 < len(A) and A[rIdx+1]>A[rIdx]:
-                rIdx += 1
+            while mtd_end + 1 < len(A) and A[mtd_end+1]>A[mtd_end]:
+                mtd_end += 1
             
             # there is no increasing (left) side of the mountain
-            if rIdx == lIdx:
+            if mtd_end == mtd_start:
                 # the next potential mountain starts in the next index
-                lIdx += 1
+                mtd_start += 1
                 continue
             
-            peakIdx = rIdx
+            peakIdx = mtd_end
             # find the bottom right of the mountain
-            while rIdx + 1 < len(A) and A[rIdx+1]<A[rIdx]:
-                rIdx += 1
+            while mtd_end + 1 < len(A) and A[mtd_end+1]<A[mtd_end]:
+                mtd_end += 1
             
             # there is no decreasing (right) side of the mountain
-            if rIdx == peakIdx:
+            if mtd_end == peakIdx:
                 # the next potential mountain starts in the next index
-                lIdx = rIdx + 1
+                mtd_start = mtd_end + 1
                 continue
             
             # update the length of the longest mountain we've found so far
-            longestLength = max(longestLength, rIdx-lIdx+1)
+            longestLength = max(longestLength, mtd_end mtd_start+1)
             
             # the next potential mountain can start at the end of the current mountain
-            lIdx = rIdx
+            mtd_start = mtd_end
         return longestLength
