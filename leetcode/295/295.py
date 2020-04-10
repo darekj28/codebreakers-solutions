@@ -1,6 +1,6 @@
 from heapq import heappush, heappop
 class MedianFinder:
-    # all operations are O(1) in both time and space
+    
     def __init__(self):
         """
         initialize your data structure here.
